@@ -1,0 +1,59 @@
+---
+/*
+  Nav links defined as data, not hard-coded HTML.
+*/
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!--
+  DaisyUI navbar: https://daisyui.com/components/navbar/
+-->
+<header class="sticky top-0 z-50 bg-base-100 shadow-sm">
+  <div class="navbar container mx-auto max-w-5xl px-4">
+
+    <div class="navbar-start">
+      <a href="/" class="btn btn-ghost text-xl font-bold">JP</a>
+    </div>
+
+    <!-- Desktop nav — hidden on mobile (hidden md:flex) -->
+    <nav class="navbar-end hidden md:flex gap-1">
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={href}
+          class:list={[
+            'btn btn-ghost btn-sm',
+            currentPath === href && 'btn-active',
+          ]}
+        >
+          {label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile hamburger — visible only on small screens (md:hidden) -->
+    <div class="navbar-end md:hidden">
+      <div class="dropdown dropdown-end">
+        <button tabindex="0" class="btn btn-ghost btn-square" aria-label="Open menu">
+          <!-- Inline SVG hamburger icon — no icon library needed -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40">
+          {navLinks.map(({ href, label }) => (
+            <li>
+              <a href={href} class={currentPath === href ? 'active' : ''}>{label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</header>

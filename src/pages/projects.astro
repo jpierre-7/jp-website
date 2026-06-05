@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Project {
+  title: string;
+  description: string;
+  tech: string[];
+  liveUrl: string | null;
+  repoUrl: string | null;
+}
+
+const projects: Project[] = [
+  {
+    title: 'Project One',
+    description: 'A short description of what this project does and why it was interesting to build.',
+    tech: ['Astro', 'TypeScript'],
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'Project Two',
+    description: 'A short description of what this project does and why it was interesting to build.',
+    tech: ['React', 'Node.js'],
+    liveUrl: '#',
+    repoUrl: '#',
+  },
+  {
+    title: 'Project Three',
+    description: 'A short description of what this project does and why it was interesting to build.',
+    tech: ['Python', 'FastAPI'],
+    liveUrl: '#',
+    repoUrl: null, // null = private repo, no link rendered
+  },
+];
+---
+
+<BaseLayout title="Projects" description="Projects by John Pierre">
+  <h1 class="text-4xl font-bold mb-8">Projects</h1>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {projects.map((project) => (
+      <div class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
+        <div class="card-body flex flex-col">
+          <h2 class="card-title">{project.title}</h2>
+          <p class="text-sm opacity-70 flex-1">{project.description}</p>
+
+          <!-- Tech stack badges -->
+          <div class="flex flex-wrap gap-1 mt-3">
+            {project.tech.map((t) => (
+              <span class="badge badge-primary badge-sm">{t}</span>
+            ))}
+          </div>
+
+          <div class="card-actions justify-end mt-4">
+            {project.repoUrl && (
+              <a href={project.repoUrl} class="btn btn-ghost btn-xs" target="_blank" rel="noopener">
+                Repo
+              </a>
+            )}
+            {project.liveUrl && (
+              <a href={project.liveUrl} class="btn btn-primary btn-xs" target="_blank" rel="noopener">
+                View
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</BaseLayout>

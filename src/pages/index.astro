@@ -1,0 +1,32 @@
+---
+/*
+  FILE-BASED ROUTING
+  Every .astro file inside src/pages/ becomes a URL route automatically:
+    src/pages/index.astro
+    src/pages/about.astro  
+    src/pages/blog/post.astro 
+
+  No router config needed — Astro's convention handles it.
+*/
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home">
+  <!--
+    DaisyUI hero: https://daisyui.com/components/hero/
+  -->
+  <section class="hero min-h-[60vh]">
+    <div class="hero-content text-center">
+      <div class="max-w-xl">
+        <h1 class="text-5xl font-bold">Hi, I'm John</h1>
+        <p class="py-6 text-lg opacity-70">
+          I'm a developer and data analyst passionate about building impactful projects.
+        </p>
+        <div class="flex gap-3 justify-center flex-wrap">
+          <a href="/projects" class="btn btn-primary">View My Work</a>
+          <a href="/about" class="btn btn-ghost">About Me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
