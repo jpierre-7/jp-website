@@ -9,6 +9,8 @@
   No router config needed — Astro's convention handles it.
 */
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const withBase = (path: string) => `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, '/');
 ---
 
 <BaseLayout title="Home">
@@ -23,8 +25,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           I'm a developer and data analyst passionate about building impactful projects.
         </p>
         <div class="flex gap-3 justify-center flex-wrap">
-          <a href="/projects" class="btn btn-primary">View My Work</a>
-          <a href="/about" class="btn btn-ghost">About Me</a>
+          <a href={withBase('projects')} class="btn btn-primary">View My Work</a>
+          <a href={withBase('about')} class="btn btn-ghost">About Me</a>
         </div>
       </div>
     </div>

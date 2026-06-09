@@ -2,13 +2,19 @@
 /*
   Nav links defined as data, not hard-coded HTML.
 */
+// Prefix internal links with the configured `base` (import.meta.env.BASE_URL)
+// so routes work both locally and when deployed under /jp-website.
+const withBase = (path: string) => `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, '/');
+
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
+  { href: withBase(''), label: 'Home' },
+  { href: withBase('about'), label: 'About' },
+  { href: withBase('projects'), label: 'Projects' },
 ];
 
-const currentPath = Astro.url.pathname;
+// Normalize trailing slashes so the active-state comparison is reliable.
+const norm = (p: string) => p.replace(/\/+$/, '') || '/';
+const currentPath = norm(Astro.url.pathname);
 ---
 
 <!--
@@ -18,7 +24,7 @@ const currentPath = Astro.url.pathname;
   <div class="navbar container mx-auto max-w-5xl px-4">
 
     <div class="navbar-start">
-      <a href="/" class="btn btn-ghost text-xl font-bold">JP</a>
+      <a href={withBase('')} class="btn btn-ghost text-xl font-bold">JP</a>
     </div>
 
     <!-- Desktop nav — hidden on mobile (hidden md:flex) -->
@@ -28,7 +34,7 @@ const currentPath = Astro.url.pathname;
           href={href}
           class:list={[
             'btn btn-ghost btn-sm',
-            currentPath === href && 'btn-active',
+            currentPath === norm(href) && 'btn-active',
           ]}
         >
           {label}
@@ -48,7 +54,7 @@ const currentPath = Astro.url.pathname;
         <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-40">
           {navLinks.map(({ href, label }) => (
             <li>
-              <a href={href} class={currentPath === href ? 'active' : ''}>{label}</a>
+              <a href={href} class={currentPath === norm(href) ? 'active' : ''}>{label}</a>
             </li>
           ))}
         </ul>

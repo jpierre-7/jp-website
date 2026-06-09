@@ -11,25 +11,28 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'Project One',
-    description: 'A short description of what this project does and why it was interesting to build.',
-    tech: ['Astro', 'TypeScript'],
-    liveUrl: '#',
-    repoUrl: '#',
+    title: 'US County Health Analysis',
+    description:
+      'A full-stack data analytics project exploring county-level public health trends across the US — 293K+ observations spanning 12 health measures and ~3,000 counties. Includes an ETL pipeline, a PostgreSQL database, a Flask API, and an interactive Plotly Dash dashboard.',
+    tech: ['Python', 'pandas', 'PostgreSQL', 'Flask', 'Plotly Dash'],
+    liveUrl: 'https://us-county-health-dashboard.onrender.com',
+    repoUrl: 'https://github.com/jpierre-7/us-county-health-analysis',
   },
   {
-    title: 'Project Two',
-    description: 'A short description of what this project does and why it was interesting to build.',
-    tech: ['React', 'Node.js'],
-    liveUrl: '#',
-    repoUrl: '#',
+    title: 'Dotfiles',
+    description:
+      'My personal Arch Linux configuration, managed with GNU Stow. A reproducible setup built around the Niri Wayland compositor, with bootstrap scripts and configs for Fish, Neovim, WezTerm, and Starship.',
+    tech: ['Arch Linux', 'GNU Stow', 'Niri', 'Fish', 'Neovim'],
+    liveUrl: null,
+    repoUrl: 'https://github.com/jpierre-7/dotfiles',
   },
   {
-    title: 'Project Three',
-    description: 'A short description of what this project does and why it was interesting to build.',
-    tech: ['Python', 'FastAPI'],
-    liveUrl: '#',
-    repoUrl: null, // null = private repo, no link rendered
+    title: 'Intro to Machine Learning (ITAI 1371)',
+    description:
+      'Coursework and projects from my Introduction to ML course at Houston City College. Notebooks cover the full workflow — EDA, feature engineering, regression and classification, ensemble methods, unsupervised learning, and model evaluation.',
+    tech: ['Python', 'Jupyter', 'scikit-learn'],
+    liveUrl: null,
+    repoUrl: 'https://github.com/jpierre-7/ITAI_1371_ML_Course',
   },
 ];
 ---
