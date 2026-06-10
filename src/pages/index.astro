@@ -1,56 +1,83 @@
 ---
-/*
-  FILE-BASED ROUTING
-  Every .astro file inside src/pages/ becomes a URL route automatically:
-    src/pages/index.astro
-    src/pages/about.astro  
-    src/pages/blog/post.astro 
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-  No router config needed — Astro's convention handles it.
-*/
-import BaseLayout from '../layouts/BaseLayout.astro';
-
-const withBase = (path: string) => `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, '/');
+const withBase = (path: string) =>
+    `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
 ---
 
 <BaseLayout title="Home">
-  <!--
-    DaisyUI hero: https://daisyui.com/components/hero/
-  -->
-  <section class="hero min-h-[60vh]">
-    <div class="hero-content text-center">
-      <div class="max-w-xl">
-        <h1 class="text-5xl font-bold typing">Hi, I'm John</h1>
-        <p class="py-6 text-lg opacity-70">
-          I'm a developer and data analyst passionate about building impactful projects.
-        </p>
-        <div class="flex gap-3 justify-center flex-wrap">
-          <a href={withBase('projects')} class="btn btn-primary">View My Work</a>
-          <a href={withBase('about')} class="btn btn-ghost">About Me</a>
+    <!--
+        DaisyUI hero: https://daisyui.com/components/hero/
+    -->
+    <section class="hero min-h-[60vh]">
+        <div class="hero-content flex-col lg:flex-row">
+            <img
+                src={withBase("some_dork.jpeg")}
+                alt="John taking in the view while multipitching in Red Rocks NV"
+                class="max-w-sm rounded-lg shadow-2xl"
+            />
+            <div class="text-center">
+                <div class="max-w-xl">
+                    <h1 class="text-5xl font-bold typing">Hi, I'm John</h1>
+                    <p class="py-6 text-lg opacity-70">
+                        I'm the President of the Computer Science Association
+                        (CSA) at Houston City College and a developer/data
+                        analyst passionate about building impactful projects.
+                    </p>
+                    <div class="flex gap-3 justify-center flex-wrap">
+                        <a href={withBase("projects")} class="btn btn-primary">
+                            View My Work
+                        </a>
+                        <a href={withBase("about")} class="btn btn-primary">
+                            About Me
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <a
+                        href="https://github.com/jpierre-7"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-square bg-[#f9b800] hover:bg-[#fabd2f] border-none"
+                    >
+                        <img src={withBase("github.svg")} alt="GitHub" class="w-6 h-6" />
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/johndotpierre/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-square bg-[#f9b800] hover:bg-[#fabd2f] border-none"
+                    >
+                        <img src={withBase("linkedin.png")} alt="LinkedIn" class="w-6 h-6" />
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Typing Animation -->
+    <style>
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid currentColor;
+            width: 0;
+            animation:
+                typing 1.8s steps(13, end) 0.3s forwards,
+                blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            to {
+                width: 13ch;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+    </style>
 </BaseLayout>
-
-<!-- Typing Animation -->
-<style>
-  .typing {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid currentColor;
-    width: 0;
-    animation:
-      typing 1.8s steps(13, end) 0.3s forwards,
-      blink 0.75s step-end infinite;
-  }
-
-  @keyframes typing {
-    to { width: 13ch; }
-  }
-
-  @keyframes blink {
-    50% { border-color: transparent; }
-  }
-</style>

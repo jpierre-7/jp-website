@@ -1,31 +1,63 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About" description="About John Pierre">
-  <div class="max-w-2xl mx-auto">
-    <h1 class="text-4xl font-bold mb-6">About Me</h1>
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-4xl font-bold mb-6">About Me</h1>
 
-    <!--
+        <!--
       DaisyUI card: https://daisyui.com/components/card/
     -->
-    <div class="card bg-base-200">
-      <div class="card-body">
-        <p class="text-lg leading-relaxed">
-          I'm John, a developer and data analyst with a passion for building impactful projects. With experience in Python, SQL, and TypeScript, I enjoy creating solutions that make a difference. When I'm not coding, you can find me exploring new technologies or rock climbing in the great outdoors.
-        </p>
-      </div>
-    </div>
+        <div class="card bg-base-200">
+            <div class="card-body">
+                <p class="text-lg leading-relaxed">
+                    I'm John, a developer and data analyst with a passion for
+                    building impactful projects. With experience in Python, SQL,
+                    and TypeScript, I enjoy creating solutions that make a
+                    difference. When I'm not coding, you can find me exploring
+                    new technologies or rock climbing in the great outdoors.
+                </p>
+            </div>
+        </div>
 
-    <h2 class="text-2xl font-semibold mt-10 mb-4">Skills & Interests</h2>
+        <h2 class="text-2xl font-semibold mt-10 mb-4">Skills & Interests</h2>
 
-    <!--
+        <!--
       DaisyUI badge: https://daisyui.com/components/badge/
     -->
-    <div class="flex flex-wrap gap-2">
-      {['Python', 'SQL', 'TypeScript', 'Astro', 'React', 'Tailwind CSS'].map((skill) => (
-        <span class="badge badge-outline badge-lg">{skill}</span>
-      ))}
+        <div class="flex flex-wrap gap-2">
+            {
+                [
+                    "Python",
+                    "SQL",
+                    "PostgreSQL",
+                    "Supabase",
+                    "Render",
+                    "Flask",
+                    "TypeScript",
+                    "Astro",
+                    "React",
+                    "Tailwind CSS",
+                    "Microsoft Office",
+                    "Linux",
+                ].map((skill) => (
+                    <span class="badge badge-outline badge-lg">{skill}</span>
+                ))
+            }
+        </div>
+
+        <!--
+        Button for resume download
+    -->
+        <div class="mt-8 flex justify-center">
+            <a
+                href={`${import.meta.env.BASE_URL}/John-Pierre-Resume.pdf`}
+                download="John-Pierre-Resume.pdf"
+                class="btn btn-primary"
+            >
+                Download Resume
+            </a>
+        </div>
     </div>
-  </div>
 </BaseLayout>
