@@ -1,3 +1,3 @@
 # jp-website
 
-This is v2 of my website
+This is v1 of my website
