@@ -1,7 +1,68 @@
 ---
 const year = new Date().getFullYear();
+const withBase = (path: string) =>
+    `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
 ---
 
-<footer class="footer footer-center bg-base-200 text-base-content p-6 mt-auto">
-  <p class="text-sm opacity-60">© {year} John Pierre</p>
+<footer
+    class="border-t border-[#3c3836]/60 bg-[#1d2021]/60 mt-20 py-10 text-gruvbox-light3 font-mono text-xs"
+>
+    <div
+        class="container mx-auto max-w-5xl px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6"
+    >
+        <!-- Bio & Copyright -->
+        <div
+            class="flex flex-col items-center md:items-start gap-1 text-center md:text-left"
+        >
+            <div
+                class="flex items-center gap-2 text-gruvbox-light2 font-semibold text-sm"
+            >
+                <span class="text-primary">&gt;</span> John Pierre
+            </div>
+            <p class="text-gruvbox-light4">
+                Coach @ Major League Hacking &bull; President @ CSA (HCC) &bull;
+                Developer &amp; Data Analyst
+            </p>
+            <p class="text-gruvbox-light4/70 mt-1">
+                &copy; {year} &bull; All rights reserved.
+            </p>
+        </div>
+
+        <!-- Quick Navigation & Links -->
+        <div
+            class="flex flex-wrap items-center justify-center gap-4 text-gruvbox-light2"
+        >
+            <a href={withBase("")} class="hover:text-primary transition-colors"
+                >Home</a
+            >
+            <span class="text-gruvbox-dark3">&bull;</span>
+            <a
+                href={withBase("projects")}
+                class="hover:text-primary transition-colors">Projects</a
+            >
+            <span class="text-gruvbox-dark3">&bull;</span>
+            <a
+                href={withBase("about")}
+                class="hover:text-primary transition-colors">About</a
+            >
+            <span class="text-gruvbox-dark3">&bull;</span>
+            <a
+                href="https://github.com/jpierre-7"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary transition-colors inline-flex items-center gap-1"
+            >
+                GitHub
+            </a>
+            <span class="text-gruvbox-dark3">&bull;</span>
+            <a
+                href="https://www.linkedin.com/in/johndotpierre/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-primary transition-colors inline-flex items-center gap-1"
+            >
+                LinkedIn
+            </a>
+        </div>
+    </div>
 </footer>

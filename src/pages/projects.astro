@@ -2,72 +2,300 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 interface Project {
+  id: string;
   title: string;
+  category: string;
+  badge?: string;
   description: string;
+  highlights?: string[];
+  metrics?: { label: string; value: string }[];
   tech: string[];
   liveUrl: string | null;
   repoUrl: string | null;
+  featured?: boolean;
 }
 
 const projects: Project[] = [
   {
+    id: 'county-health',
     title: 'US County Health Analysis',
+    category: 'Full-Stack Data Analytics & ETL',
+    badge: '★ FEATURED PROJECT',
+    featured: true,
     description:
-      'A full-stack data analytics project exploring county-level public health trends across the US — 293K+ observations spanning 12 health measures and ~3,000 counties. Includes an ETL pipeline, a PostgreSQL database, a Flask API, and an interactive Plotly Dash dashboard.',
-    tech: ['Python', 'pandas', 'PostgreSQL', 'Flask', 'Plotly Dash'],
+      'An end-to-end data analytics platform analyzing county-level public health outcomes across the United States. Ingests and cleans over 293,000 observations across ~3,000 counties and 12 health metrics, backed by a PostgreSQL database, Flask backend, and interactive Plotly Dash visualization suite.',
+    metrics: [
+      { label: 'Observations', value: '293K+' },
+      { label: 'US Counties', value: '~3,000' },
+      { label: 'Health Metrics', value: '12' },
+    ],
+    highlights: [
+      'Automated ETL data ingestion & normalization pipeline',
+      'Relational PostgreSQL schema with optimized SQL queries',
+      'Interactive Plotly Dash visualizations with geographic maps & trend filters',
+      'Deployed on Render with production-ready Flask server',
+    ],
+    tech: ['Python', 'PostgreSQL', 'Flask', 'Plotly Dash', 'pandas', 'SQLAlchemy'],
     liveUrl: 'https://us-county-health-dashboard.onrender.com',
     repoUrl: 'https://github.com/jpierre-7/us-county-health-analysis',
   },
   {
-    title: 'Dotfiles',
+    id: 'clarity-ai',
+    title: 'Clarity AI',
+    category: 'AI / EdTech • 1st Place Winner',
+    badge: '🥇 1st Place @ CodeRed:Astra',
+    featured: false,
     description:
-      'My personal Arch Linux configuration, managed with GNU Stow. A reproducible setup built around the Niri Wayland compositor, with bootstrap scripts and configs for Fish, Neovim, WezTerm, and Starship.',
-    tech: ['Arch Linux', 'GNU Stow', 'Niri', 'Fish', 'Neovim'],
+      'A multi-tier educational platform designed to bridge the feedback gap between teachers and students by providing an anonymous, real-time channel for students to express confusion points and receive targeted assistance during or after lectures.',
+    highlights: [
+      'Won 1st Place at the CodeRed:Astra Hackathon',
+      'Anonymous student feedback and comprehension tracking workflow',
+      'Multi-tier educator dashboard for live lecture pulse checks',
+    ],
+    tech: ['Python', 'TypeScript', 'React', 'Tailwind CSS', 'Flask'],
+    liveUrl: null,
+    repoUrl: 'https://github.com/jpierre-7',
+  },
+  {
+    id: 'dotfiles',
+    title: 'Personal Dotfiles & Arch Rice',
+    category: 'Linux & Systems Configuration',
+    featured: false,
+    description:
+      'Reproducible, modular Arch Linux workstation environment orchestrated with GNU Stow. Built around the scrollable-tiling Niri Wayland compositor, featuring custom workflows for Fish shell, Neovim, WezTerm, and Starship prompt.',
+    highlights: [
+      'Modular configuration symlinking via GNU Stow',
+      'Scrollable-tiling workflow configured for Niri Wayland compositor',
+      'Custom Neovim IDE setup with LSP, treesitter, and Gruvbox theme',
+    ],
+    tech: ['Arch Linux', 'Niri (Wayland)', 'GNU Stow', 'Fish Shell', 'Neovim', 'Lua'],
     liveUrl: null,
     repoUrl: 'https://github.com/jpierre-7/dotfiles',
   },
   {
-    title: 'Intro to Machine Learning (ITAI 1371)',
+    id: 'ml-coursework',
+    title: 'Applied Machine Learning (ITAI 1371)',
+    category: 'Data Science & Machine Learning',
+    featured: false,
     description:
-      'Coursework and projects from my Introduction to ML course at Houston City College. Notebooks cover the full workflow — EDA, feature engineering, regression and classification, ensemble methods, unsupervised learning, and model evaluation.',
-    tech: ['Python', 'Jupyter', 'scikit-learn'],
+      'Comprehensive machine learning coursework and implementations from Houston City College. Covers the end-to-end predictive modeling lifecycle: exploratory data analysis, feature engineering, regression, classification, clustering, and ensemble models.',
+    highlights: [
+      'Data preparation & feature selection pipelines in scikit-learn',
+      'Comparative evaluation of regression and classification models',
+      'Model validation with ROC-AUC, confusion matrices, and cross-validation',
+    ],
+    tech: ['Python', 'Jupyter', 'scikit-learn', 'pandas', 'NumPy', 'Matplotlib'],
     liveUrl: null,
     repoUrl: 'https://github.com/jpierre-7/ITAI_1371_ML_Course',
   },
 ];
+
+const featuredProject = projects.find((p) => p.featured);
+const otherProjects = projects.filter((p) => !p.featured);
 ---
 
-<BaseLayout title="Projects" description="Projects by John Pierre">
-  <h1 class="text-4xl font-bold mb-8">Projects</h1>
+<BaseLayout title="Projects" description="Featured engineering and data analytics projects by John Pierre">
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    {projects.map((project) => (
-      <div class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
-        <div class="card-body flex flex-col">
-          <h2 class="card-title">{project.title}</h2>
-          <p class="text-sm opacity-70 flex-1">{project.description}</p>
+  <!-- Page Header -->
+  <div class="space-y-3 mb-10">
+    <div class="inline-flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider">
+      <span>// Portfolio</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gruvbox-light0">
+      Featured Projects
+    </h1>
+    <p class="text-gruvbox-light3 text-base max-w-2xl leading-relaxed">
+      A collection of full-stack data platforms, hackathon winners, and Linux developer environments.
+    </p>
+  </div>
 
-          <!-- Tech stack badges -->
-          <div class="flex flex-wrap gap-1 mt-3">
-            {project.tech.map((t) => (
-              <span class="badge badge-primary badge-sm">{t}</span>
+  <!-- Featured Project Hero Card -->
+  {featuredProject && (
+    <article class="card-gruvbox p-6 sm:p-8 mb-10 border border-primary/30 relative overflow-hidden group">
+      <!-- Glow accent -->
+      <div class="absolute -right-10 -top-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/15 transition-all"></div>
+
+      <div class="flex flex-col lg:flex-row gap-8 justify-between">
+
+        <!-- Left details -->
+        <div class="lg:w-7/12 space-y-5">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span class="px-2.5 py-1 rounded bg-primary/15 text-primary text-xs font-mono font-semibold border border-primary/30">
+              {featuredProject.badge}
+            </span>
+            <span class="text-xs font-mono text-gruvbox-light4">
+              {featuredProject.category}
+            </span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-bold text-gruvbox-light0 group-hover:text-primary transition-colors">
+            {featuredProject.title}
+          </h2>
+
+          <p class="text-gruvbox-light2 text-sm sm:text-base leading-relaxed">
+            {featuredProject.description}
+          </p>
+
+          <!-- Key Highlights Bullet Points -->
+          {featuredProject.highlights && (
+            <ul class="space-y-1.5 text-xs sm:text-sm text-gruvbox-light3">
+              {featuredProject.highlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-primary font-mono select-none">▸</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <!-- Tech Stack Badges -->
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            {featuredProject.tech.map((t) => (
+              <span class="badge-gruvbox">{t}</span>
             ))}
           </div>
+        </div>
 
-          <div class="card-actions justify-end mt-4">
-            {project.repoUrl && (
-              <a href={project.repoUrl} class="btn btn-ghost btn-xs" target="_blank" rel="noopener">
-                Repo
+        <!-- Right: Metrics & Actions -->
+        <div class="lg:w-5/12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gruvbox-dark2/60 pt-6 lg:pt-0 lg:pl-8 space-y-6">
+
+          <!-- Metrics grid -->
+          {featuredProject.metrics && (
+            <div class="grid grid-cols-3 gap-3 bg-gruvbox-dark0_hard/60 p-4 rounded-lg border border-gruvbox-dark2/40">
+              {featuredProject.metrics.map((m) => (
+                <div class="text-center space-y-1">
+                  <div class="font-mono text-xl sm:text-2xl font-bold text-primary">{m.value}</div>
+                  <div class="text-[11px] font-mono text-gruvbox-light4">{m.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <!-- Actions -->
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+            {featuredProject.liveUrl && (
+              <a
+                href={featuredProject.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary font-mono normal-case text-sm h-11 min-h-0 w-full justify-center shadow-md hover:scale-[1.01] active:scale-[0.98] transition-all"
+              >
+                <span>Live Interactive Dashboard</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
             )}
-            {project.liveUrl && (
-              <a href={project.liveUrl} class="btn btn-primary btn-xs" target="_blank" rel="noopener">
-                View
+
+            {featuredProject.repoUrl && (
+              <a
+                href={featuredProject.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-ghost font-mono normal-case text-sm h-11 min-h-0 w-full justify-center border border-gruvbox-dark2 hover:bg-gruvbox-dark1 hover:border-primary/40 active:scale-[0.98] transition-all text-gruvbox-light2"
+              >
+                <svg class="w-4 h-4 fill-current mr-2" viewBox="0 0 24 24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+                <span>View Source Repository</span>
               </a>
             )}
           </div>
+
         </div>
+
       </div>
+    </article>
+  )}
+
+  <!-- Grid of Other Projects -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {otherProjects.map((project) => (
+      <article class="card-gruvbox p-6 flex flex-col justify-between group">
+        <div class="space-y-4">
+
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="text-xs font-mono text-primary font-medium">
+              {project.category}
+            </span>
+            {project.badge && (
+              <span class="px-2 py-0.5 rounded bg-gruvbox-bright_yellow/15 text-gruvbox-bright_yellow text-[11px] font-mono font-semibold border border-gruvbox-bright_yellow/30">
+                {project.badge}
+              </span>
+            )}
+          </div>
+
+          <h2 class="text-xl font-bold text-gruvbox-light0 group-hover:text-primary transition-colors">
+            {project.title}
+          </h2>
+
+          <p class="text-sm text-gruvbox-light3 leading-relaxed">
+            {project.description}
+          </p>
+
+          {project.highlights && (
+            <ul class="space-y-1 text-xs text-gruvbox-light3/90 pt-1">
+              {project.highlights.map((h) => (
+                <li class="flex items-start gap-1.5">
+                  <span class="text-primary font-mono select-none">▸</span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <!-- Tech stack tags -->
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            {project.tech.map((t) => (
+              <span class="badge-gruvbox">{t}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Card bottom actions (pinned) -->
+        <div class="pt-6 mt-6 border-t border-gruvbox-dark2/40 flex items-center justify-end gap-2">
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-ghost font-mono normal-case text-xs h-9 min-h-0 border border-gruvbox-dark2 hover:bg-gruvbox-dark1 hover:border-primary/40 text-gruvbox-light2 inline-flex items-center gap-1.5"
+            >
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <span>Code</span>
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary font-mono normal-case text-xs h-9 min-h-0"
+            >
+              <span>Launch Demo ↗</span>
+            </a>
+          )}
+        </div>
+      </article>
     ))}
   </div>
+
+  <!-- Bottom Collaboration Callout -->
+  <div class="mt-12 p-6 rounded-xl bg-[#282828]/50 border border-gruvbox-dark2/40 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-sm">
+    <div class="flex items-center gap-3">
+      <span class="text-2xl">⚡</span>
+      <span class="text-gruvbox-light2">Looking for code samples or open-source repositories?</span>
+    </div>
+    <a
+      href="https://github.com/jpierre-7"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-ghost btn-sm border border-gruvbox-dark2 hover:border-primary text-gruvbox-light1 hover:text-primary normal-case"
+    >
+      Explore GitHub Profile ↗
+    </a>
+  </div>
+
 </BaseLayout>

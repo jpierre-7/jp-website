@@ -1,63 +1,302 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const withBase = (path: string) =>
+    `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
+
+const skillGroups = [
+    {
+        category: "Languages & Core",
+        icon: "💻",
+        skills: [
+            "Python",
+            "SQL",
+            "TypeScript",
+            "JavaScript",
+            "Bash",
+            "Lua",
+            "HTML/CSS",
+        ],
+    },
+    {
+        category: "Data Analytics & ML",
+        icon: "📈",
+        skills: [
+            "PostgreSQL",
+            "pandas",
+            "NumPy",
+            "scikit-learn",
+            "Plotly Dash",
+            "SQLAlchemy",
+            "Supabase",
+            "ETL Pipelines",
+            "Data Visualization",
+        ],
+    },
+    {
+        category: "Web & Frameworks",
+        icon: "⚡",
+        skills: [
+            "Astro",
+            "Flask",
+            "React",
+            "Tailwind CSS",
+            "REST APIs",
+            "DaisyUI",
+        ],
+    },
+    {
+        category: "Systems & DevOps",
+        icon: "🛠️",
+        skills: [
+            "Arch Linux",
+            "Git & GitHub",
+            "GNU Stow",
+            "Niri (Wayland)",
+            "Neovim",
+            "Fish Shell",
+            "Render",
+        ],
+    },
+];
 ---
 
-<BaseLayout title="About" description="About John Pierre">
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-4xl font-bold mb-6">About Me</h1>
+<BaseLayout
+    title="About"
+    description="About John Pierre — MLH Coach, CSA President, Developer & Data Analyst"
+>
+    <div class="space-y-12">
+        <!-- Header -->
+        <div class="space-y-3">
+            <div
+                class="inline-flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider"
+            >
+                <span>// Background</span>
+            </div>
+            <h1
+                class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gruvbox-light0"
+            >
+                About John Pierre
+            </h1>
+            <p
+                class="text-gruvbox-light3 text-base sm:text-lg max-w-2xl leading-relaxed"
+            >
+                Developer, data analyst, MLH Coach, and CSA President based in
+                Houston, TX.
+            </p>
+        </div>
 
-        <!--
-      DaisyUI card: https://daisyui.com/components/card/
-    -->
-        <div class="card bg-base-200">
-            <div class="card-body">
-                <p class="text-lg leading-relaxed">
-                    I'm John, a developer and data analyst with a passion for
-                    building impactful projects. With experience in Python, SQL,
-                    and TypeScript, I enjoy creating solutions that make a
-                    difference. When I'm not coding, you can find me exploring
-                    new technologies or rock climbing in the great outdoors.
-                </p>
+        <!-- Bio Story & Narrative -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left Narrative -->
+            <div
+                class="lg:col-span-8 space-y-6 text-gruvbox-light2 text-base sm:text-lg leading-relaxed"
+            >
+                <div class="card-gruvbox p-6 sm:p-8 space-y-5">
+                    <p>
+                        I'm a developer and data analyst driven by turning
+                        complex data into intuitive, impactful software and
+                        empowering the next generation of builders. Currently, I
+                        serve as a <span
+                            class="text-gruvbox-bright_aqua font-semibold"
+                            >Coach at Major League Hacking (MLH)</span
+                        > supporting hackathons worldwide, and as <span
+                            class="text-primary font-semibold"
+                            >President of the Computer Science Association (CSA)</span
+                        > at Houston City College.
+                    </p>
+                    <p>
+                        My technical background centers on end-to-end ETL data
+                        pipelines, relational databases with <span
+                            class="text-primary font-medium">PostgreSQL</span
+                        >, predictive modeling with <span
+                            class="text-secondary font-medium"
+                            >Python &amp; scikit-learn</span
+                        >, and modern web applications built with <span
+                            class="text-gruvbox-bright_aqua font-medium"
+                            >Astro &amp; TypeScript</span
+                        >.
+                    </p>
+                    <p>
+                        At CSA, I've spearheaded organizational growth,
+                        organized hackathons like <em
+                            >HackHCC (100+ attendees)</em
+                        >, led technical workshops, and fostered industry
+                        mentorship.
+                    </p>
+                    <p>
+                        Outside the terminal, I'm an avid rock climber—often
+                        found multipitch climbing in Red Rocks, NV or bouldering
+                        outdoors. I treat climbing routes the same way I
+                        approach software architecture: break down the beta,
+                        isolate the crux, and execute methodically.
+                    </p>
+                </div>
+
+                <!-- Recognition & Honors -->
+                <div class="card-gruvbox p-6 space-y-4">
+                    <h2
+                        class="text-base font-bold font-mono text-primary flex items-center gap-2"
+                    >
+                        <span>🏆</span> Honors &amp; Leadership
+                    </h2>
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono"
+                    >
+                        <div
+                            class="p-3 bg-gruvbox-dark0_hard/60 rounded border border-gruvbox-dark2/50"
+                        >
+                            <div class="text-gruvbox-bright_yellow font-bold">
+                                1st Place — CodeRed:Astra
+                            </div>
+                            <div class="text-gruvbox-light4 mt-0.5">
+                                Clarity AI educational platform
+                            </div>
+                        </div>
+                        <div
+                            class="p-3 bg-gruvbox-dark0_hard/60 rounded border border-gruvbox-dark2/50"
+                        >
+                            <div class="text-gruvbox-bright_aqua font-bold">
+                                Daniels Scholar
+                            </div>
+                            <div class="text-gruvbox-light4 mt-0.5">
+                                Academic &amp; Leadership Scholarship
+                            </div>
+                        </div>
+                        <div
+                            class="p-3 bg-gruvbox-dark0_hard/60 rounded border border-gruvbox-dark2/50"
+                        >
+                            <div class="text-gruvbox-bright_green font-bold">
+                                2026 Hackcon Scholarship
+                            </div>
+                            <div class="text-gruvbox-light4 mt-0.5">
+                                Major League Hacking
+                            </div>
+                        </div>
+                        <div
+                            class="p-3 bg-gruvbox-dark0_hard/60 rounded border border-gruvbox-dark2/50"
+                        >
+                            <div class="text-gruvbox-bright_orange font-bold">
+                                UH Dean's Excellence Award
+                            </div>
+                            <div class="text-gruvbox-light4 mt-0.5">
+                                University of Houston
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Quick Summary Card -->
+            <div class="lg:col-span-4 space-y-6">
+                <div
+                    class="card-gruvbox p-6 space-y-4 text-sm font-mono border-gruvbox-dark2/60"
+                >
+                    <h2
+                        class="text-xs uppercase tracking-wider text-primary font-bold"
+                    >
+                        // Quick Facts
+                    </h2>
+                    <ul class="space-y-3 text-gruvbox-light3 text-xs">
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary">📍</span>
+                            <span>Houston, Texas</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gruvbox-bright_aqua">🚀</span>
+                            <span>Coach @ Major League Hacking</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-secondary">🎓</span>
+                            <span>President @ CSA (HCC &bull; GPA 3.9)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gruvbox-bright_yellow">💻</span>
+                            <span>Arch Linux + Neovim + Fish</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-gruvbox-bright_orange">🧗</span>
+                            <span>Multipitch &amp; Sport Climber</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Resume Action Card -->
+                <div
+                    class="card-gruvbox p-6 space-y-3 border-primary/30 bg-[#282828]/80"
+                >
+                    <div class="flex items-center justify-between">
+                        <span
+                            class="text-xs font-mono text-primary font-semibold"
+                            >📄 Resume</span
+                        >
+                        <span
+                            class="badge badge-xs badge-outline font-mono text-[10px]"
+                            >PDF</span
+                        >
+                    </div>
+                    <p class="text-xs text-gruvbox-light3">
+                        View or download my full technical resume and experience
+                        credentials.
+                    </p>
+                    <a
+                        href={withBase("John-Pierre-Resume.pdf")}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn btn-primary font-mono normal-case text-xs w-full min-h-0 h-10 shadow-md flex items-center justify-center gap-1.5"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                            ></path>
+                        </svg>
+                        <span>Download Resume</span>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <h2 class="text-2xl font-semibold mt-10 mb-4">Skills & Interests</h2>
+        <!-- Technical Skills Matrix -->
+        <section class="space-y-6 pt-4">
+            <div class="space-y-1">
+                <span
+                    class="text-primary font-mono text-xs font-semibold uppercase tracking-wider"
+                >
+                    // Tooling &amp; Stack
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-gruvbox-light0">
+                    Skills &amp; Technologies
+                </h2>
+            </div>
 
-        <!--
-      DaisyUI badge: https://daisyui.com/components/badge/
-    -->
-        <div class="flex flex-wrap gap-2">
-            {
-                [
-                    "Python",
-                    "SQL",
-                    "PostgreSQL",
-                    "Supabase",
-                    "Render",
-                    "Flask",
-                    "TypeScript",
-                    "Astro",
-                    "React",
-                    "Tailwind CSS",
-                    "Microsoft Office",
-                    "Linux",
-                ].map((skill) => (
-                    <span class="badge badge-outline badge-lg">{skill}</span>
-                ))
-            }
-        </div>
-
-        <!--
-        Button for resume download
-    -->
-        <div class="mt-8 flex justify-center">
-            <a
-                href={`${import.meta.env.BASE_URL}/John-Pierre-Resume.pdf`}
-                download="John-Pierre-Resume.pdf"
-                class="btn btn-primary"
-            >
-                Download Resume
-            </a>
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {
+                    skillGroups.map((group) => (
+                        <div class="card-gruvbox p-6 space-y-4">
+                            <div class="flex items-center gap-2.5">
+                                <span class="text-lg">{group.icon}</span>
+                                <h3 class="text-base font-bold text-gruvbox-light1 font-mono">
+                                    {group.category}
+                                </h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                {group.skills.map((skill) => (
+                                    <span class="badge-gruvbox">{skill}</span>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
     </div>
 </BaseLayout>
