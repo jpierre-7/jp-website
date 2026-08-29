@@ -1,160 +1,166 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WaveField from "../components/ui/wave-field";
 
 const withBase = (path: string) =>
     `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
 ---
 
 <BaseLayout title="Home">
+    <!-- Ambient Fullscreen Interactive Wave Background -->
+    <WaveField variant="background" client:only="react" />
+
     <!-- Hero Section -->
     <section class="py-6 sm:py-12 md:py-16">
         <div
             class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center"
         >
-            <!-- Left: Bio & CTAs (7 cols) -->
-            <div
-                class="lg:col-span-7 flex flex-col items-start space-y-6 text-left"
-            >
-                <!-- Status Badge -->
+            <!-- Left: Bio & CTAs inside semi-transparent glass card (7 cols) -->
+            <div class="lg:col-span-7">
                 <div
-                    class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono bg-gruvbox-bright_green/10 text-gruvbox-bright_green border border-gruvbox-bright_green/20 shadow-sm flex-wrap"
+                    class="card-gruvbox p-6 sm:p-8 bg-[#282828]/55 backdrop-blur-md border border-gruvbox-dark2/70 shadow-2xl rounded-2xl flex flex-col items-start space-y-6 text-left"
                 >
-                    <span
-                        class="w-2 h-2 rounded-full bg-gruvbox-bright_green animate-pulse"
-                    ></span>
-                    <span
-                        >Coach @ Major League Hacking &amp; President @ CSA</span
+                    <!-- Status Badge -->
+                    <div
+                        class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono bg-gruvbox-bright_green/10 text-gruvbox-bright_green border border-gruvbox-bright_green/20 shadow-sm flex-wrap"
                     >
-                </div>
-
-                <!-- Main Display Heading -->
-                <div class="space-y-2">
-                    <h1
-                        class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gruvbox-light0"
-                    >
-                        Hi, I'm <span class="text-primary font-mono"
-                            >&lt;John /&gt;</span
+                        <span
+                            class="w-2 h-2 rounded-full bg-gruvbox-bright_green animate-pulse"
+                        ></span>
+                        <span
+                            >Coach @ Major League Hacking &amp; President @ CSA</span
                         >
-                    </h1>
+                    </div>
+
+                    <!-- Main Display Heading -->
+                    <div class="space-y-2">
+                        <h1
+                            class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gruvbox-light0"
+                        >
+                            Hi, I'm <span class="text-primary font-mono"
+                                >&lt;John /&gt;</span
+                            >
+                        </h1>
+                        <p
+                            class="text-lg sm:text-xl text-gruvbox-bright_yellow/90 font-medium font-mono"
+                        >
+                            Developer &bull; Data Analyst &bull; MLH Coach
+                            &bull; CSA President
+                        </p>
+                    </div>
+
+                    <!-- Bio paragraph -->
                     <p
-                        class="text-lg sm:text-xl text-gruvbox-bright_yellow/90 font-medium font-mono"
+                        class="text-gruvbox-light2 text-base sm:text-lg leading-relaxed max-w-xl"
                     >
-                        Developer &bull; Data Analyst &bull; MLH Coach &bull;
-                        CSA President
+                        I serve as a <span
+                            class="text-gruvbox-bright_aqua font-medium"
+                            >Coach at Major League Hacking</span
+                        > and lead as <span class="text-primary font-medium"
+                            >President of the Computer Science Association</span
+                        > at HCC. When I'm not architecting ETL data pipelines, building
+                        web tools with Python &amp; TypeScript, or mentoring hackers,
+                        I'm multipitch climbing in Red Rocks or fine-tuning my Arch
+                        Linux environment.
                     </p>
-                </div>
 
-                <!-- Bio paragraph -->
-                <p
-                    class="text-gruvbox-light2 text-base sm:text-lg leading-relaxed max-w-xl"
-                >
-                    I serve as a <span
-                        class="text-gruvbox-bright_aqua font-medium"
-                        >Coach at Major League Hacking</span
-                    > and lead as <span class="text-primary font-medium"
-                        >President of the Computer Science Association</span
-                    > at HCC. When I'm not architecting ETL data pipelines, building
-                    web tools with Python &amp; TypeScript, or mentoring hackers,
-                    I'm multipitch climbing in Red Rocks or fine-tuning my Arch Linux
-                    environment.
-                </p>
-
-                <!-- Action CTAs -->
-                <div class="flex flex-wrap items-center gap-3 pt-2">
-                    <a
-                        href={withBase("projects")}
-                        class="btn btn-primary font-mono normal-case text-sm px-5 h-11 min-h-0 shadow-md hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                    >
-                        <span>View My Work</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 ml-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                    <!-- Action CTAs -->
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <a
+                            href={withBase("projects")}
+                            class="btn btn-primary font-mono normal-case text-sm px-5 h-11 min-h-0 shadow-md hover:shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                    </a>
+                            <span>View My Work</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4 ml-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
 
-                    <a
-                        href={withBase("about")}
-                        class="btn btn-ghost font-mono normal-case text-sm px-4 h-11 min-h-0 border border-gruvbox-dark2 hover:bg-gruvbox-dark1 hover:border-primary/40 active:scale-[0.98] transition-all text-gruvbox-light1"
-                    >
-                        About Me
-                    </a>
-
-                    <a
-                        href={withBase("John-Pierre-Resume.pdf")}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn btn-ghost font-mono normal-case text-sm px-4 h-11 min-h-0 text-gruvbox-light3 hover:text-gruvbox-bright_aqua hover:bg-gruvbox-dark1 active:scale-[0.98] transition-all"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 mr-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
+                        <a
+                            href={withBase("about")}
+                            class="btn btn-ghost font-mono normal-case text-sm px-4 h-11 min-h-0 border border-gruvbox-dark2 hover:bg-gruvbox-dark1 hover:border-primary/40 active:scale-[0.98] transition-all text-gruvbox-light1"
                         >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                            ></path>
-                        </svg>
-                        Resume (PDF)
-                    </a>
-                </div>
+                            About Me
+                        </a>
 
-                <!-- Socials Row -->
-                <div
-                    class="flex items-center gap-3 pt-3 border-t border-gruvbox-dark2/50 w-full max-w-md"
-                >
-                    <span class="text-xs font-mono text-gruvbox-light4"
-                        >Connect:</span
-                    >
-
-                    <a
-                        href="https://github.com/jpierre-7"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="GitHub Profile"
-                        class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-gruvbox-dark1 border border-gruvbox-dark2 text-gruvbox-light2 hover:text-primary hover:border-primary/40 text-xs font-mono transition-all hover:-translate-y-0.5"
-                    >
-                        <svg
-                            class="w-3.5 h-3.5 fill-current"
-                            viewBox="0 0 24 24"
+                        <a
+                            href={withBase("John-Pierre-Resume.pdf")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-ghost font-mono normal-case text-sm px-4 h-11 min-h-0 text-gruvbox-light3 hover:text-gruvbox-bright_aqua hover:bg-gruvbox-dark1 active:scale-[0.98] transition-all"
                         >
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                            ></path>
-                        </svg>
-                        <span>GitHub</span>
-                    </a>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4 mr-1"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path>
+                            </svg>
+                            Resume (PDF)
+                        </a>
+                    </div>
 
-                    <a
-                        href="https://www.linkedin.com/in/johndotpierre/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="LinkedIn Profile"
-                        class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-gruvbox-dark1 border border-gruvbox-dark2 text-gruvbox-light2 hover:text-primary hover:border-primary/40 text-xs font-mono transition-all hover:-translate-y-0.5"
+                    <!-- Socials Row -->
+                    <div
+                        class="flex items-center gap-3 pt-3 border-t border-gruvbox-dark2/50 w-full"
                     >
-                        <svg
-                            class="w-3.5 h-3.5 fill-current"
-                            viewBox="0 0 24 24"
+                        <span class="text-xs font-mono text-gruvbox-light4"
+                            >Connect:</span
                         >
-                            <path
-                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                            ></path>
-                        </svg>
-                        <span>LinkedIn</span>
-                    </a>
+
+                        <a
+                            href="https://github.com/jpierre-7"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="GitHub Profile"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-gruvbox-dark1/80 border border-gruvbox-dark2 text-gruvbox-light2 hover:text-primary hover:border-primary/40 text-xs font-mono transition-all hover:-translate-y-0.5"
+                        >
+                            <svg
+                                class="w-3.5 h-3.5 fill-current"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                                ></path>
+                            </svg>
+                            <span>GitHub</span>
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/johndotpierre/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="LinkedIn Profile"
+                            class="flex items-center gap-2 px-3 py-1.5 rounded-md bg-gruvbox-dark1/80 border border-gruvbox-dark2 text-gruvbox-light2 hover:text-primary hover:border-primary/40 text-xs font-mono transition-all hover:-translate-y-0.5"
+                        >
+                            <svg
+                                class="w-3.5 h-3.5 fill-current"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                                ></path>
+                            </svg>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -169,7 +175,7 @@ const withBase = (path: string) =>
 
                     <!-- Framed Photo Card -->
                     <div
-                        class="relative card-gruvbox p-2 bg-[#282828] max-w-xs sm:max-w-sm rounded-xl overflow-hidden shadow-2xl"
+                        class="relative card-gruvbox p-2 bg-[#282828]/70 backdrop-blur-md max-w-xs sm:max-w-sm rounded-xl overflow-hidden shadow-2xl"
                     >
                         <img
                             src={withBase("some_dork.jpeg")}
@@ -225,7 +231,9 @@ const withBase = (path: string) =>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- 1. Data Analytics Card -->
-            <div class="card-gruvbox p-6 flex flex-col justify-between group">
+            <div
+                class="card-gruvbox p-6 flex flex-col justify-between group bg-[#282828]/60 backdrop-blur-md"
+            >
                 <div class="space-y-3">
                     <div
                         class="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-mono text-lg"
@@ -255,7 +263,9 @@ const withBase = (path: string) =>
             </div>
 
             <!-- 2. Leadership & Mentorship Card -->
-            <div class="card-gruvbox p-6 flex flex-col justify-between group">
+            <div
+                class="card-gruvbox p-6 flex flex-col justify-between group bg-[#282828]/60 backdrop-blur-md"
+            >
                 <div class="space-y-3">
                     <div
                         class="w-10 h-10 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary font-mono text-lg"
@@ -285,7 +295,9 @@ const withBase = (path: string) =>
             </div>
 
             <!-- 3. Linux & Systems Card -->
-            <div class="card-gruvbox p-6 flex flex-col justify-between group">
+            <div
+                class="card-gruvbox p-6 flex flex-col justify-between group bg-[#282828]/60 backdrop-blur-md"
+            >
                 <div class="space-y-3">
                     <div
                         class="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent font-mono text-lg"

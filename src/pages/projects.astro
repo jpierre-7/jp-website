@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import WaveField from '../components/ui/wave-field';
 
 interface Project {
   id: string;
@@ -96,8 +97,11 @@ const otherProjects = projects.filter((p) => !p.featured);
 
 <BaseLayout title="Projects" description="Featured engineering and data analytics projects by John Pierre">
 
+  <!-- Ambient Fullscreen Interactive Wave Background -->
+  <WaveField variant="background" client:only="react" />
+
   <!-- Page Header -->
-  <div class="space-y-3 mb-10">
+  <div class="space-y-3 mb-10 card-gruvbox p-6 sm:p-8 bg-[#282828]/55 backdrop-blur-md border border-gruvbox-dark2/70 shadow-2xl rounded-2xl">
     <div class="inline-flex items-center gap-2 font-mono text-xs text-primary uppercase tracking-wider">
       <span>// Portfolio</span>
     </div>
@@ -111,11 +115,11 @@ const otherProjects = projects.filter((p) => !p.featured);
 
   <!-- Featured Project Hero Card -->
   {featuredProject && (
-    <article class="card-gruvbox p-6 sm:p-8 mb-10 border border-primary/30 relative overflow-hidden group">
+    <article class="card-gruvbox p-6 sm:p-8 mb-10 border border-primary/40 bg-[#282828]/60 backdrop-blur-md shadow-2xl relative overflow-hidden group rounded-2xl">
       <!-- Glow accent -->
       <div class="absolute -right-10 -top-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/15 transition-all"></div>
 
-      <div class="flex flex-col lg:flex-row gap-8 justify-between">
+      <div class="flex flex-col lg:flex-row gap-8 justify-between relative z-10">
 
         <!-- Left details -->
         <div class="lg:w-7/12 space-y-5">
@@ -161,7 +165,7 @@ const otherProjects = projects.filter((p) => !p.featured);
 
           <!-- Metrics grid -->
           {featuredProject.metrics && (
-            <div class="grid grid-cols-3 gap-3 bg-gruvbox-dark0_hard/60 p-4 rounded-lg border border-gruvbox-dark2/40">
+            <div class="grid grid-cols-3 gap-3 bg-gruvbox-dark0_hard/70 p-4 rounded-lg border border-gruvbox-dark2/40">
               {featuredProject.metrics.map((m) => (
                 <div class="text-center space-y-1">
                   <div class="font-mono text-xl sm:text-2xl font-bold text-primary">{m.value}</div>
@@ -211,7 +215,7 @@ const otherProjects = projects.filter((p) => !p.featured);
   <!-- Grid of Other Projects -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {otherProjects.map((project) => (
-      <article class="card-gruvbox p-6 flex flex-col justify-between group">
+      <article class="card-gruvbox p-6 flex flex-col justify-between group bg-[#282828]/60 backdrop-blur-md border border-gruvbox-dark2/70 shadow-xl rounded-xl">
         <div class="space-y-4">
 
           <div class="flex flex-wrap items-center justify-between gap-2">
@@ -283,7 +287,7 @@ const otherProjects = projects.filter((p) => !p.featured);
   </div>
 
   <!-- Bottom Collaboration Callout -->
-  <div class="mt-12 p-6 rounded-xl bg-[#282828]/50 border border-gruvbox-dark2/40 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-sm">
+  <div class="mt-12 p-6 rounded-2xl bg-[#282828]/55 backdrop-blur-md border border-gruvbox-dark2/70 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-sm">
     <div class="flex items-center gap-3">
       <span class="text-2xl">⚡</span>
       <span class="text-gruvbox-light2">Looking for code samples or open-source repositories?</span>
