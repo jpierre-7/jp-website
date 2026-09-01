@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import WaveField from "../components/ui/wave-field";
+import PhotoCarousel from "../components/ui/photo-carousel";
 
 const withBase = (path: string) =>
     `${import.meta.env.BASE_URL}/${path}`.replace(/\/{2,}/g, "/");
@@ -164,40 +165,9 @@ const withBase = (path: string) =>
                 </div>
             </div>
 
-            <!-- Right: Photo with Framed Accent (5 cols) -->
+            <!-- Right: Rotating Photo Carousel with Framed Accent (5 cols) -->
             <div class="lg:col-span-5 flex justify-center lg:justify-end">
-                <div class="relative group">
-                    <!-- Accent background glow -->
-                    <div
-                        class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-lg group-hover:opacity-100 transition duration-500 opacity-60"
-                    >
-                    </div>
-
-                    <!-- Framed Photo Card -->
-                    <div
-                        class="relative card-gruvbox p-2 bg-[#282828]/70 backdrop-blur-md max-w-xs sm:max-w-sm rounded-xl overflow-hidden shadow-2xl"
-                    >
-                        <img
-                            src={withBase("some_dork.jpeg")}
-                            alt="John taking in the view while multipitching in Red Rocks NV"
-                            class="w-full aspect-[4/5] object-cover rounded-lg group-hover:scale-[1.01] transition-transform duration-500"
-                            loading="eager"
-                        />
-                        <!-- Subtle Photo Tag -->
-                        <div
-                            class="pt-2.5 pb-1 px-1 flex items-center justify-between text-xs font-mono text-gruvbox-light3"
-                        >
-                            <span class="flex items-center gap-1.5">
-                                <span class="text-gruvbox-bright_orange"
-                                    >🧗</span
-                                > Red Rocks, NV
-                            </span>
-                            <span class="text-[11px] text-gruvbox-light4"
-                                >multipitch</span
-                            >
-                        </div>
-                    </div>
-                </div>
+                <PhotoCarousel baseUrl={import.meta.env.BASE_URL} client:load />
             </div>
         </div>
     </section>
