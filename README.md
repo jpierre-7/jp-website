@@ -5,7 +5,7 @@
 
 My personal website and engineering portfolio. I'm a Developer, Data Analyst, MLH Coach, and the current President of the Computer Science Association at HCC.
 
-🔗 **Live Site:** [https://jpierre-7.github.io/jp-website/](https://7jpierre.github.io/jp-website/)
+🔗 **Live Site:** [https://jpierre-7.github.io/jp-website/](https://jpierre-7.github.io/jp-website/)
 
 ---
 
