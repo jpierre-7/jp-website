@@ -1,7 +1,7 @@
 # John Pierre — Personal Website & Portfolio
 
 [![Deploy to GitHub Pages](https://github.com/jpierre-7/jp-website/actions/workflows/deploy.yml/badge.svg)](https://github.com/jpierre-7/jp-website/actions/workflows/deploy.yml)
-[![Live Site](https://img.shields.io/badge/Live%20Site-7jpierre.github.io%2Fjp--website-fabd2f?style=flat&logo=astro&logoColor=black)](https://jpierre-7.github.io/jp-website/)
+[![Live Site](https://img.shields.io/badge/Live%20Site-jpierre--7.github.io%2Fjp--website-fabd2f?style=flat&logo=astro&logoColor=black)](https://jpierre-7.github.io/jp-website/)
 
 My personal website and engineering portfolio. I'm a Developer, Data Analyst, MLH Coach, and the current President of the Computer Science Association at HCC.
 
@@ -54,7 +54,7 @@ The site is continuously deployed to **GitHub Pages** via [GitHub Actions](.gith
 
 - **Pipeline**: GitHub Actions (`deploy.yml`)
 - **Hosting**: GitHub Pages
-- **URL**: [https://7jpierre.github.io/jp-website/](https://7jpierre.github.io/jp-website/)
+- **URL**: [https://jpierre-7.github.io/jp-website/](https://jpierre-7.github.io/jp-website/)
 
 ---
 
